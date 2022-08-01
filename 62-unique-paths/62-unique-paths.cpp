@@ -1,15 +1,15 @@
 class Solution {
 public:
     int uniquePaths(int m, int n) {
-        long long ret = 1;
-        long long su = n + m - 1;
-        long long mi = min(n, m);
+        vector < int > v;
         
-        for(long long i = 1; i < mi; i++) {
-            ret *= su - i;
-            ret /= i;
-        }
+        v.resize(m);
+        v[0] = 1;
+        
+        for(int i = 0; i < n; i++)
+            for(int j = 1; j < m; j++)
+                v[j] += v[j-1];
             
-        return (int)ret;
+        return v[m-1];
     }
 };

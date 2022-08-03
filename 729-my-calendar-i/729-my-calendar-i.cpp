@@ -6,11 +6,10 @@ public:
     }
     
     bool book(int start, int end) {
-        for(set < pair < int, int > >::iterator iter = this->bookInfo.begin(); iter != this->bookInfo.end(); iter++) {
+        for(set < pair < int, int > >::iterator iter = this->bookInfo.begin();
+            iter != this->bookInfo.end() && iter->first < end; iter++) {
             if(iter->first < end && start < iter->second)
                 return false;
-            else if(end <= iter->first)
-                break;
         }
         
         this->bookInfo.insert(make_pair(start, end));

@@ -9,6 +9,8 @@ public:
         for(set < pair < int, int > >::iterator iter = this->bookInfo.begin(); iter != this->bookInfo.end(); iter++) {
             if(iter->first < end && start < iter->second)
                 return false;
+            else if(end <= iter->first)
+                break;
         }
         
         this->bookInfo.insert(make_pair(start, end));

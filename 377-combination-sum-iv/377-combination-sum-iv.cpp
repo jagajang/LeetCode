@@ -3,9 +3,8 @@ private:
     const int INT_OVERFLOW = 10000000000;
 public:
     int combinationSum4(vector<int>& nums, int target) {
-        vector < long long > numCase;
+        long long numCase[1001] = {0, };
         
-        numCase.resize(target+1);
         sort(nums.begin(), nums.end());
         
         numCase[0] = 1;

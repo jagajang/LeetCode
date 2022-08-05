@@ -9,7 +9,10 @@ public:
         
         numCase[0] = 1;
         
-        for(int i = 0; i < target; i++)
+        for(int i = 0; i < target; i++) {
+            if(numCase[i] == 0)
+                continue;
+            
             for(int j = 0; j < nums.size(); j++) {
                 int next = i + nums[j];
                 if(next > target)
@@ -18,7 +21,7 @@ public:
                 numCase[next] += numCase[i];
                 numCase[next] %= INT_OVERFLOW;
             }
-                
+        }
         
         return numCase[target];
     }

@@ -23,24 +23,18 @@ public:
         for(int p = 1; p < 11; p++) {
             canCheck[0][p] = 1;
             canCheck[1][p] = canCheck[1][p-1] * 2;
-            //cout << canCheck[1][p] << " ";
         }
         
         // calc time 2~
         for(int t = 2; t <= checkTime; t++) {
             canCheck[t][0] = 1;
-            //cout << canCheck[t][0] << " ";
 
             for(int p = 1; p < 11; p++) {
                 canCheck[t][p] = 0;
                 
                 for(int r = 0; r <= p; r++)
                     canCheck[t][p] += nCr[p][r] * canCheck[t-1][p-r];
-                
-                //cout << canCheck[t][p] << " ";
             }
-            
-            //cout << "\n";
         }
         
         for(int p = 0; p < 11; p++) {

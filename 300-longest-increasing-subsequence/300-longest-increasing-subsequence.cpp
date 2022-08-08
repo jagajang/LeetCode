@@ -1,7 +1,7 @@
 class Solution {
 public:
     int lengthOfLIS(vector<int>& nums) {
-        
+        int ret = 1;
         vector < int > lenMin;
         
         lenMin.push_back(nums[0]);
@@ -11,6 +11,7 @@ public:
             
             if(lenMin.back() < num) {
                 lenMin.push_back(num);
+                ret++;
             }
             else {
                 auto iter = lower_bound(lenMin.begin(), lenMin.end(), num);
@@ -18,6 +19,6 @@ public:
             }
         }
         
-        return lenMin.size();
+        return ret;
     }
 };

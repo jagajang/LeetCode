@@ -13,7 +13,7 @@ public:
                 lenMin.push_back(num);
             }
             else {
-                vector<int>::iterator iter = lower_bound(lenMin.begin(), lenMin.end(), num);
+                auto iter = lower_bound(lenMin.begin(), lenMin.end(), num);
                 *iter = num;
             }
         }

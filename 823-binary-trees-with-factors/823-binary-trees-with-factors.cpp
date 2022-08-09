@@ -14,12 +14,9 @@ public:
             
             while(st <= en) {
                 if(arr[st] == arr[i] / arr[en] && arr[i] % arr[en] == 0) {
-                    count[i] += count[st] * count[en];
+                    long long tmp = count[st] * count[en];
+                    count[i] += (st != en) ? tmp<<1 : tmp;
                     count[i] %= MODULA;
-                    if(st != en) {
-                        count[i] += count[st] * count[en];
-                        count[i] %= MODULA;
-                    }
                     
                     st++;
                     en--;

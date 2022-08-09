@@ -13,7 +13,7 @@ public:
             int st = 0, en = i - 1;
             
             while(st <= en) {
-                if((long long)arr[st] * arr[en] == arr[i]) {
+                if(arr[st] == arr[i] / arr[en] && arr[i] % arr[en] == 0) {
                     count[i] += count[st] * count[en];
                     count[i] %= MODULA;
                     if(st != en) {
@@ -24,9 +24,9 @@ public:
                     st++;
                     en--;
                 }
-                else if((long long)arr[st] * arr[en] < arr[i])
+                else if(arr[st] <= arr[i] / arr[en])
                     st++;
-                else if((long long)arr[st] * arr[en] > arr[i])
+                else
                     en--;
             }
             

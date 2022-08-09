@@ -5,12 +5,14 @@ public:
     int numFactoredBinaryTrees(vector<int>& arr) {
     
         int ret = 0;
-        vector < long long > count = vector<long long>(1000, 1);
+        long long count[1000];
         
         sort(arr.begin(), arr.end());
         
         for(int i = 0; i < arr.size(); i++) {
             int st = 0, en = i - 1;
+            
+            count[i] = 1;
             
             while(st <= en) {
                 if(arr[st] == arr[i] / arr[en] && arr[i] % arr[en] == 0) {

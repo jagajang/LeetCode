@@ -10,38 +10,42 @@
 
 class Solution {
 private:
-    map < int, pair < int, TreeNode*> > depth;
-    
-    void setDepth(TreeNode* now, int dep) {
+    TreeNode *p, *q;
+    pair < int, TreeNode* > getLCA(TreeNode* now) {
+        int retInt = 0;
+        TreeNode* nptr = NULL;
         
-        if(now->left != NULL){
-            depth[now->left->val] = make_pair(dep + 1, now);
-            setDepth(now->left, dep+1);
-        }
+        if(now == NULL)
+            return make_pair(0, nptr);
         
-        if(now->right != NULL) {
-            depth[now->right->val] = make_pair(dep + 1, now);
-            setDepth(now->right, dep+1);
-        }
+        pair < int, TreeNode* > left = getLCA(now->left);
+        pair < int, TreeNode* > right = getLCA(now->right);
+            
+        // completed
+        if(left.first == 3)
+            return left;
+        else if(right.first == 3)
+            return right;
+        
+        // p or q
+        if(now == p)
+            retInt = 1;
+        else if(now == q)
+            retInt = 2;
+        
+        // complete
+        retInt |= left.first | right.first;
+        if(retInt == 3)
+            return make_pair(3, now);
+        
+        return make_pair(retInt, nptr);
     }
     
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        depth[root->val].first = 0;
-        setDepth(root, 0);
+        this->p = p;
+        this->q = q;
         
-        if(depth[p->val].first > depth[q->val].first)
-            while(depth[p->val].first != depth[q->val].first)
-                p = depth[p->val].second;
-        else if(depth[p->val] < depth[q->val])
-            while(depth[p->val].first != depth[q->val].first)
-                q = depth[q->val].second;
-        
-        while(p->val != q->val) {
-            p = depth[p->val].second;
-            q = depth[q->val].second;
-        }
-        
-        return p;
+        return getLCA(root).second;
     }
 };

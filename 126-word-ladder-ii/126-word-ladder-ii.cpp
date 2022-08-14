@@ -46,14 +46,6 @@ public:
                 bfs.push(nex);
             }
         }
-        
-        /*for(int i = 0; i < wordSize; i++) {
-            cout << wordList[i] << "(" << wordInfos[i].depth << ")\n";
-            cout << "parent : ";
-            for(int par : wordInfos[i].parent)
-                cout << wordList[par] << "(" << wordInfos[par].depth << ")";
-            cout << "\n";
-        }*/
                               
         bool foundFlag = false;
         int endIndex;
@@ -95,9 +87,6 @@ bool Solution::canMake(string a, string b) {
 void Solution::getRoute(int now, vector<string> &route, vector<string>& wordList, vector<vector<string>> &ret) {
     if(now == wordSize - 1) {
         ret.push_back(route);
-        /*for(string s : route)
-            cout << s << " ";
-        cout << "\n";*/
         return;
     }
 

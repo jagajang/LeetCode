@@ -6,14 +6,14 @@ public:
         int numsIndex = 0;
         
         for(int val = -1000; val <= 1001; val++) {
-            
+            int size = seqStart.size();
             int count = 0;
             
             for(; numsIndex < nums.size() && nums[numsIndex] == val; numsIndex++)
                 count++;
 
-            if(count < seqStart.size()) {
-                for(int i = 0; seqStart.size() > count; i++) {
+            if(count < size) {
+                for(int i = 0; i < size - count; i++) {
                     int fr = seqStart.front();
                     seqStart.pop();
                     
@@ -22,7 +22,7 @@ public:
                 }
             }
             else if(count > seqStart.size()) {
-                for(int i = 0; seqStart.size() < count; i++)
+                for(int i = 0; i < count - size; i++)
                     seqStart.push(val);
             }
         }

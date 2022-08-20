@@ -6,9 +6,6 @@ public:
         int nextStop = 0;
         int stop = 0;
         priority_queue <int> fuels;
-
-        if(startFuel >= target)
-            return 0;
         
         for(; nextStop < stations.size(); nextStop++) {
             if(nowFuel < stations[nextStop][0])
@@ -17,16 +14,12 @@ public:
             fuels.push(stations[nextStop][1]);
         }
         
-        while(!fuels.empty()) {
+        while(!fuels.empty() && nowFuel < target) {
             int refuel = fuels.top();
             fuels.pop();
             
             nowFuel += refuel;
             stop++;
-            
-            if(nowFuel >= target) {
-                return stop;
-            }
             
             for(; nextStop < stations.size(); nextStop++) {
                 if(nowFuel < stations[nextStop][0])
@@ -36,6 +29,8 @@ public:
             }
         }
         
+        if(nowFuel >= target)
+            return stop;
         return -1;
     }
 };

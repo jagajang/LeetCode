@@ -14,7 +14,7 @@ private:
     bool hasOne(TreeNode* now) {
         if(now == NULL)
             return false;
-                
+
         int ret = false;
         if(hasOne(now->left))
             ret = true;
